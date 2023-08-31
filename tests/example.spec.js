@@ -1,9 +1,12 @@
 const { test } = require('../src/fixtures/fixtures');
 
-const cardData = {
+const userData = {
   cardNumber: '4242 4242 4242 4242',
-  expire: '04 / 24',
-  CVC: '000',
+  cardExpire: '04 / 24',
+  cardCVC: '000',
+  firstName: 'First name',
+  lastName: 'Last name',
+  email: '',
 };
 test.beforeEach(async ({ basePage }) => {
   await basePage.visit('/qa-test-7R58U3/');
@@ -35,13 +38,17 @@ test('simple test', async ({ basePage }) => {
   await donateForm.creditCardButton.click();
 
   // Вводит карточные данные для оплаты и Нажимает “Continue"
-  await donateForm.cardForm.fillCardFields(cardData.cardNumber, cardData.expire, cardData.CVC);
+  await donateForm.cardForm.fillCardFields(
+    userData.cardNumber,
+    userData.cardExpire,
+    userData.cardCVC,
+  );
 
   // Вводит “First name”,  “Last name”, “E-mail” и нажимает “Donate”
   await donateForm.personalInfoForm.fillPersonalFields(
-    'First name',
-    'Last name',
-    'E-mail@mail.com',
+    userData.firstName,
+    userData.lastName,
+    userData.email,
   );
 
   // Проверяет, что отобразилась ошибка и что отображается инпут поля ввода карты
