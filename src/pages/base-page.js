@@ -3,7 +3,7 @@ const { MainForm } = require('../components/main-form');
 const { DonateForm } = require('../components/donate-form');
 
 /**
- * Базовая страница, в ней содержатся все формы, а так же возможность перейти на этй страницу
+ * Базовая страница, в ней содержатся все формы, а так же возможность перейти на эту страницу
  */
 class BasePage {
   constructor(page) {

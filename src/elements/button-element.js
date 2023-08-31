@@ -9,17 +9,10 @@ class ButtonElement extends BaseElement {
     return 'button';
   }
 
-  async hover(selector, qaId) {
+  async hover() {
     await test.step(`Ховер на ${this.typeOf} с именем "${this._signature}"`, async () => {
-      const el = this.getElementInFrame(selector, qaId);
+      const el = this.getElement(this._frameSelectors, this._qaId);
       await el.hover();
-    });
-  }
-
-  async doubleClick(selector, qaId) {
-    await test.step(`Двойной клик на ${this.typeOf} с именем "${this._signature}"`, async () => {
-      const el = this.getElementInFrame(selector, qaId);
-      await el.dblclick();
     });
   }
 }
