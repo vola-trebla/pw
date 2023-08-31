@@ -1,5 +1,7 @@
 # Простой тест на playwright
 
+Установить [NodeJS](https://nodejs.org/en/download/).
+
 Склонировать проект:
 ```
 git clone git@github.com:vola-trebla/pw.git
