@@ -1,15 +1,24 @@
-const { ButtonElement } = require('../elements/button');
+const { ButtonElement } = require('../elements/button-element');
+const { iframe } = require('../selectors/iframe-constants');
 
 /**
  * Главная форма с одной кнопкой "Give me"
  */
 class MainForm {
   constructor(page) {
-    this.giveMeButton = new ButtonElement({
-      page,
+    this._page = page;
+  }
+
+  /**
+   * Кнопка "Give me"
+   * @returns {ButtonElement}
+   */
+  get giveMeButton() {
+    return new ButtonElement({
+      page: this._page,
       signature: 'Кнопка "Give me"',
       qaId: 'fun-element',
-      frameSelector: '#XBGSFAMB',
+      frameSelectors: [iframe.maneIframe],
     });
   }
 
