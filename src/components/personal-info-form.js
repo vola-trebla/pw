@@ -1,7 +1,5 @@
-const { test } = require('@playwright/test');
-const { InputElement } = require('../elements/input-element');
-const { iframe } = require('../selectors/iframe-constants');
-const { ButtonElement } = require('../elements/button-element');
+const { InputElement, ButtonElement } = require('../elements/');
+const { iframe } = require('../constants/iframe-selectors');
 
 /**
  * Форма ввода имени, фамилии и email

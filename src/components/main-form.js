@@ -1,5 +1,5 @@
-const { ButtonElement } = require('../elements/button-element');
-const { iframe } = require('../selectors/iframe-constants');
+const { ButtonElement } = require('../elements/');
+const { iframe } = require('../constants/iframe-selectors');
 
 /**
  * Главная форма с одной кнопкой "Give me"

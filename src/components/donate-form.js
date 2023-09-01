@@ -1,9 +1,7 @@
-const { ButtonElement } = require('../elements/button-element');
-const { InputElement } = require('../elements/input-element');
-const { CheckboxElement } = require('../elements/checkbox-element');
+const { ButtonElement, InputElement, CheckboxElement } = require('../elements/');
 const { CardForm } = require('./card-form');
 const { PersonalInfoForm } = require('./personal-info-form');
-const { iframe } = require('../selectors/iframe-constants');
+const { iframe } = require('../constants/iframe-selectors');
 
 /**
  * Форма доната
