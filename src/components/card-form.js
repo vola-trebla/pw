@@ -83,7 +83,6 @@ class CardForm {
    * @returns {Promise<void>}
    */
   async fillCardFields(cardNumber, expirationDate, CVC) {
-    await this.cardNumberInput.click();
     await this.cardNumberInput.type(cardNumber);
     await this.secureExpirationInput.type(expirationDate);
     await this.secureCVCInput.type(CVC);
