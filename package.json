@@ -6,6 +6,10 @@
   "scripts": {
     "test-parallel": "npx playwright test",
     "test-sequence": "npx playwright test --workers=1",
+    "test-web": "npx playwright test --project=chromium",
+    "test-mobile": "npx playwright test --project=mobile",
+    "test-web-headed": "npx playwright test --project=chromium --headed",
+    "remove-reports": "rd /s /q allure-report allure-results",
     "generate-allure-report": "npx allure generate ./allure-results --clean",
     "open-allure-report": "npx allure open ./allure-report"
   },
