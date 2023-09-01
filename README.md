@@ -63,3 +63,8 @@ npm install
 ```
  "remove-reports": "rd /s /q allure-report allure-results"
 ```
+
+## Отчет
+### Пример того, как выглядит отчет при запуске тестов в параллель на chrome и mobile
+
+![allurereport.png](..%2F..%2F..%2F..%2Fallurereport.png)
