@@ -24,8 +24,7 @@ test('simple test', async ({ basePage }) => {
   await donateForm.donatButton.click();
 
   // Убирает чек-бокс покрытия комиссии “Cover transaction costs”
-  await donateForm.coverFreeCheckbox.click();
-  await donateForm.coverFreeCheckbox.shouldBeUnChecked();
+  await donateForm.coverFreeCheckbox.uncheckCheckbox();
 
   // Выбирает оплату кредитной картой “Credit card”
   await donateForm.creditCardButton.click();

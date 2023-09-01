@@ -4,5 +4,5 @@ export const userData = {
   cardCVC: '000',
   firstName: 'First name',
   lastName: 'Last name',
-  email: '',
+  email: 'userEmail@mail.ru',
 };

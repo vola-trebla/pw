@@ -12,14 +12,30 @@ class CheckboxElement extends BaseElement {
   async shouldBeChecked() {
     await test.step(`${this.typeOf} с именем "${this._signature}" должен быть выделен`, async () => {
       const locator = this.getElement(this._frameSelectors, this._qaId);
-      await expect(locator).toHaveAttribute('aria-checked', 'true');
+      await expect(locator).toBeChecked();
     });
   }
 
   async shouldBeUnChecked() {
     await test.step(`${this.typeOf} с именем "${this._signature}" должен быть не выделен`, async () => {
       const locator = this.getElement(this._frameSelectors, this._qaId);
-      await expect(locator).toHaveAttribute('aria-checked', 'false');
+      await expect(locator).toBeChecked({ checked: false });
+    });
+  }
+
+  async uncheckCheckbox() {
+    await test.step(`Убирает ${this.typeOf}:${this._signature}`, async () => {
+      const locator = this.getElement(this._frameSelectors, this._qaId);
+      await locator.uncheck();
+      await this.shouldBeUnChecked();
+    });
+  }
+
+  async checkCheckbox() {
+    await test.step(`Устанавливает ${this.typeOf}:${this._signature}`, async () => {
+      const locator = this.getElement(this._frameSelectors, this._qaId);
+      await locator.check();
+      await this.shouldBeChecked();
     });
   }
 }
