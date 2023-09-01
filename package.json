@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "Простой тест на playwright",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test-parallel": "npx playwright test",
+    "test-sequence": "npx playwright test --workers=1",
+    "generate-allure-report": "npx allure generate ./allure-results --clean",
+    "open-allure-report": "npx allure open ./allure-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.37.1",
+    "allure-commandline": "^2.24.0",
+    "allure-playwright": "^2.6.0",
     "prettier": "3.0.3"
   },
   "dependencies": {
