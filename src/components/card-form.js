@@ -1,8 +1,6 @@
 const { test } = require('@playwright/test');
-const { InputElement } = require('../elements/input-element');
-const { ButtonElement } = require('../elements/button-element');
-const { BaseElement } = require('../elements/base-element');
-const { iframe } = require('../selectors/iframe-constants');
+const { BaseElement, InputElement, ButtonElement } = require('../elements/');
+const { iframe } = require('../constants/iframe-selectors');
 
 /**
  * Форма ввода данных карты
