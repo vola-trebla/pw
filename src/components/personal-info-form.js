@@ -1,4 +1,4 @@
-const { InputElement, ButtonElement } = require('../elements/');
+const { InputElement, ButtonElement } = require('../elements');
 const { iframe } = require('../constants/iframe-selectors');
 
 /**
@@ -14,9 +14,7 @@ class PersonalInfoForm {
    * @returns {InputElement}
    */
   get nameInput() {
-    return new InputElement({
-      page: this._page,
-      signature: 'Инпут ввода имени',
+    return new InputElement('Инпут ввода имени', this._page, {
       frameSelectors: [iframe.donationWidget],
       qaId: 'personal-first-name',
     });
@@ -27,9 +25,7 @@ class PersonalInfoForm {
    * @returns {InputElement}
    */
   get lastNameInput() {
-    return new InputElement({
-      page: this._page,
-      signature: 'Инпут ввода фамилии',
+    return new InputElement('Инпут ввода фамилии', this._page, {
       frameSelectors: [iframe.donationWidget],
       qaId: 'personal-last-name',
     });
@@ -40,9 +36,7 @@ class PersonalInfoForm {
    * @returns {InputElement}
    */
   get emailInput() {
-    return new InputElement({
-      page: this._page,
-      signature: 'Инпут ввода email',
+    return new InputElement('Инпут ввода email', this._page, {
       frameSelectors: [iframe.donationWidget],
       selector: 'personal-email',
     });
@@ -53,9 +47,7 @@ class PersonalInfoForm {
    * @returns {ButtonElement}
    */
   get privacyContinueButton() {
-    return new ButtonElement({
-      page: this._page,
-      signature: 'Кнопка подтверждения доната',
+    return new ButtonElement('Кнопка подтверждения доната', this._page, {
       qaId: 'privacy-continue',
       frameSelectors: [iframe.donationWidget],
     });

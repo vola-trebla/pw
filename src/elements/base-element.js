@@ -1,13 +1,12 @@
-import { expect } from '@playwright/test';
-
 const { test } = require('@playwright/test');
+import { expect } from '@playwright/test';
 import { makeSelector } from '../utils/page-factory';
 
 /**
  * Базовый класс для работы с элементами
  */
 class BaseElement {
-  constructor({ signature, qaId, selector, page, frameSelectors = [] }) {
+  constructor({ signature, page, qaId, selector, frameSelectors = [] }) {
     this._page = page;
     this._signature = signature;
     this._selector = selector;
@@ -20,20 +19,32 @@ class BaseElement {
   }
 
   /**
+   * Получает iframe на любой вложенности
+   * @param frameSelectors
+   * @returns {FrameLocator}
+   */
+  getFrame(frameSelectors = []) {
+    let frame = this.page.frameLocator(frameSelectors[0]);
+    if (frameSelectors.length > 1) {
+      frameSelectors.slice(1).forEach((f) => {
+        frame = frame.frameLocator(f);
+      });
+    }
+    return frame;
+  }
+
+  /**
    * Получает элемент.
-   * Если находится внутри фрейма, то с помощью frameLocator идет до него по массиву iframe-ов
+   * Если находится внутри фрейма, то с помощью this.getFrame() идет до него по массиву iframe-ов
    *
    * @param frameSelectors
    * @param qaId
    * @param selector
    * @returns {Locator}
    */
-  getElement(frameSelectors = [], qaId, selector) {
-    let locator = this.page.frameLocator(frameSelectors[0]);
+  getElement(qaId, selector, frameSelectors = []) {
     let sel;
-    frameSelectors.slice(1).forEach((frame, i) => {
-      locator = locator.frameLocator(frame);
-    });
+    const locator = frameSelectors.length > 0 ? this.getFrame(frameSelectors) : this.page;
     if (qaId || this._qaId) {
       sel = makeSelector(qaId || this._qaId);
     } else {
@@ -67,7 +78,7 @@ class BaseElement {
 
   async click() {
     await test.step(`Клик на ${this.typeOf} с именем "${this._signature}"`, async () => {
-      const locator = this.getElement(this._frameSelectors, this._qaId);
+      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
       await locator.waitFor();
       await locator.click();
     });
@@ -75,22 +86,29 @@ class BaseElement {
 
   async doubleClick() {
     await test.step(`Двойной клик на ${this.typeOf} с именем "${this._signature}"`, async () => {
-      const locator = this.getElement(this._frameSelectors, this._qaId);
+      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
       await locator.dblclick();
     });
   }
 
   async selectOption(value) {
     await test.step(`Выбрать option"`, async () => {
-      const locator = this.getElement(this._frameSelectors, this._selector);
+      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
       await locator.selectOption(value);
     });
   }
 
   async shouldBeVisible() {
     await test.step(`${this.typeOf} с именем "${this._signature}" должен быть виден`, async () => {
-      const locator = this.getElement(this._frameSelectors, this._qaId);
+      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
       await expect(locator).toBeVisible();
+    });
+  }
+
+  async shouldContainText(text) {
+    await test.step(`${this.typeOf} с именем "${this._signature}" содержит текст`, async () => {
+      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
+      await expect(locator).toContainText(text);
     });
   }
 }
