@@ -1,4 +1,4 @@
-const { ButtonElement } = require('../elements/');
+const { ButtonElement, BaseElement } = require('../elements/');
 const { iframe } = require('../constants/iframe-selectors');
 
 /**
@@ -10,13 +10,23 @@ class MainForm {
   }
 
   /**
+   * Тайтл "Click me"
+   * @returns {BaseElement}
+   */
+  get title() {
+    return new BaseElement({
+      signature: 'Тайтл "Click me"',
+      page: this._page,
+      selector: 'h1',
+    });
+  }
+
+  /**
    * Кнопка "Give me"
    * @returns {ButtonElement}
    */
   get giveMeButton() {
-    return new ButtonElement({
-      page: this._page,
-      signature: 'Кнопка "Give me"',
+    return new ButtonElement('Кнопка "Give me"', this._page, {
       qaId: 'fun-element',
       frameSelectors: [iframe.maneIframe],
     });

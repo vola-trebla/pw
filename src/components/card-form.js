@@ -1,5 +1,4 @@
-const { test } = require('@playwright/test');
-const { BaseElement, InputElement, ButtonElement } = require('../elements/');
+const { BaseElement, InputElement, ButtonElement } = require('../elements');
 const { iframe } = require('../constants/iframe-selectors');
 
 /**
@@ -15,9 +14,7 @@ class CardForm {
    * @returns {InputElement}
    */
   get cardNumberInput() {
-    return new InputElement({
-      page: this._page,
-      signature: 'Инпут ввода номера карты',
+    return new InputElement('Инпут ввода номера карты', this._page, {
       frameSelectors: [iframe.donationWidget, iframe.secureCard],
       selector: '[name="cardnumber"]',
     });
@@ -28,9 +25,7 @@ class CardForm {
    * @returns {InputElement}
    */
   get secureExpirationInput() {
-    return new InputElement({
-      page: this._page,
-      signature: 'Инпут ввода срока окончания карты',
+    return new InputElement('Инпут ввода срока окончания карты', this._page, {
       frameSelectors: [iframe.donationWidget, iframe.secureExpiration],
       selector: '[name="exp-date"]',
     });
@@ -41,9 +36,7 @@ class CardForm {
    * @returns {InputElement}
    */
   get secureCVCInput() {
-    return new InputElement({
-      page: this._page,
-      signature: 'Инпут ввода CVC',
+    return new InputElement('Инпут ввода CVC', this._page, {
       frameSelectors: [iframe.donationWidget, iframe.secureCVC],
       selector: '[name="cvc"]',
     });
@@ -54,9 +47,7 @@ class CardForm {
    * @returns {ButtonElement}
    */
   get continueButton() {
-    return new ButtonElement({
-      page: this._page,
-      signature: 'Кнопка "Continue"',
+    return new ButtonElement('Кнопка "Continue"', this._page, {
       qaId: 'card-continue',
       frameSelectors: [iframe.donationWidget],
     });
@@ -68,8 +59,8 @@ class CardForm {
    */
   get errorMessage() {
     return new BaseElement({
-      page: this._page,
       signature: 'Сообщение об ошибке',
+      page: this._page,
       qaId: 'card-continue-error-title',
       frameSelectors: [iframe.donationWidget],
     });
