@@ -55,15 +55,20 @@ class BaseElement {
   }
 
   /**
+   * Геттер для получения локатора элемента
+   * @returns {Locator}
+   */
+  get element() {
+    return this.getElement(this._qaId, this._selector, this._frameSelectors);
+  }
+
+  /**
    * Можно использовать, если необходим Handle элемента
    *
-   * @param {string} qaId - значение аттрибута data-qa
-   * @param {string} selector - селектор
-   * @param {Array<string>} frameSelectors - массив селекторов iframe
    * @returns {Promise<ElementHandle<SVGElement | HTMLElement>>}
    */
-  async getElementHandle(qaId, selector, frameSelectors = []) {
-    return await this.getElement(qaId, selector, frameSelectors).elementHandle();
+  async getElementHandle() {
+    return await this.element.elementHandle();
   }
 
   get typeOf() {
@@ -79,37 +84,32 @@ class BaseElement {
 
   async click() {
     await test.step(`Клик на ${this.typeOf} с именем "${this._signature}"`, async () => {
-      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
-      await locator.waitFor();
-      await locator.click();
+      await this.element.waitFor();
+      await this.element.click();
     });
   }
 
   async doubleClick() {
     await test.step(`Двойной клик на ${this.typeOf} с именем "${this._signature}"`, async () => {
-      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
-      await locator.dblclick();
+      await this.element.dblclick();
     });
   }
 
   async selectOption(value) {
     await test.step(`Выбрать option"`, async () => {
-      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
-      await locator.selectOption(value);
+      await this.element.selectOption(value);
     });
   }
 
   async shouldBeVisible() {
     await test.step(`${this.typeOf} с именем "${this._signature}" должен быть виден`, async () => {
-      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
-      await expect(locator).toBeVisible();
+      await expect(this.element).toBeVisible();
     });
   }
 
   async shouldContainText(text) {
     await test.step(`${this.typeOf} с именем "${this._signature}" содержит текст`, async () => {
-      const locator = this.getElement(this._qaId, this._selector, this._frameSelectors);
-      await expect(locator).toContainText(text);
+      await expect(this.element).toContainText(text);
     });
   }
 }
