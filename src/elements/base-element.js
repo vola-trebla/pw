@@ -20,7 +20,8 @@ class BaseElement {
 
   /**
    * Получает iframe на любой вложенности
-   * @param frameSelectors
+   *
+   * @param {Array<string>} frameSelectors - массив селекторов iframe
    * @returns {FrameLocator}
    */
   getFrame(frameSelectors = []) {
@@ -37,9 +38,9 @@ class BaseElement {
    * Получает элемент.
    * Если находится внутри фрейма, то с помощью this.getFrame() идет до него по массиву iframe-ов
    *
-   * @param frameSelectors
-   * @param qaId
-   * @param selector
+   * @param {string} qaId - значение аттрибута data-qa
+   * @param {string} selector - селектор
+   * @param {Array<string>} frameSelectors - массив селекторов iframe
    * @returns {Locator}
    */
   getElement(qaId, selector, frameSelectors = []) {
@@ -55,13 +56,14 @@ class BaseElement {
 
   /**
    * Можно использовать, если необходим Handle элемента
-   * @param frameSelectors
-   * @param qaId
-   * @param selector
+   *
+   * @param {string} qaId - значение аттрибута data-qa
+   * @param {string} selector - селектор
+   * @param {Array<string>} frameSelectors - массив селекторов iframe
    * @returns {Promise<ElementHandle<SVGElement | HTMLElement>>}
    */
-  async getElementHandle(frameSelectors = [], qaId, selector) {
-    return await this.getElement(frameSelectors, qaId, selector).elementHandle();
+  async getElementHandle(qaId, selector, frameSelectors = []) {
+    return await this.getElement(qaId, selector, frameSelectors).elementHandle();
   }
 
   get typeOf() {
@@ -72,7 +74,6 @@ class BaseElement {
     if (!this._signature) {
       throw Error('Укажите свойство "signature"');
     }
-
     return this._signature;
   }
 
