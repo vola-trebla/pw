@@ -85,8 +85,8 @@ class CardForm {
   async fillCardFields(cardNumber, expirationDate, CVC) {
     // Использовал fill для поля ввода номера карты, т.к. type работал не стабильно (p.s. Смотрю в сторону явных/не явных ожиданий, пробую сделать type)
     await this.cardNumberInput.fill(cardNumber);
-    await this.secureExpirationInput.type(expirationDate);
-    await this.secureCVCInput.type(CVC);
+    await this.secureExpirationInput.fill(expirationDate);
+    await this.secureCVCInput.fill(CVC);
     await this.continueButton.click();
   }
 }
