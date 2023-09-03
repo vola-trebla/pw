@@ -22,7 +22,7 @@ class InputElement extends BaseElement {
 
   async type(value) {
     await test.step(`Напечатать в ${this.typeOf} "${this._signature}" значение "${value}"`, async () => {
-      await this.element.type(value, { delay: 100 });
+      await this.element.type(value, { delay: 20 });
       await expect(this.element).toHaveValue(value);
     });
   }

@@ -15,8 +15,8 @@ class PersonalInfoForm {
    */
   get nameInput() {
     return new InputElement('Инпут ввода имени', this._page, {
-      frameSelectors: [iframe.donationWidget],
       qaId: 'personal-first-name',
+      frameSelectors: [iframe.donationWidget],
     });
   }
 
@@ -26,8 +26,8 @@ class PersonalInfoForm {
    */
   get lastNameInput() {
     return new InputElement('Инпут ввода фамилии', this._page, {
-      frameSelectors: [iframe.donationWidget],
       qaId: 'personal-last-name',
+      frameSelectors: [iframe.donationWidget],
     });
   }
 
@@ -37,8 +37,8 @@ class PersonalInfoForm {
    */
   get emailInput() {
     return new InputElement('Инпут ввода email', this._page, {
+      qaId: 'personal-email',
       frameSelectors: [iframe.donationWidget],
-      selector: 'personal-email',
     });
   }
 
@@ -61,16 +61,9 @@ class PersonalInfoForm {
    * @returns {Promise<void>}
    */
   async fillPersonalFields(name, lastName, email) {
-    await this.nameInput.click();
     await this.nameInput.type(name);
-    await this.lastNameInput.click();
     await this.lastNameInput.type(lastName);
-
-    // Здесь пришлось схитрить, ни в какую не находился селектор для поля email.
-    // Хотя указано все правильно, не пойму в чем дело. Добавил костыль через TAB
-    // await this.emailInput.type(email);
-    await this._page.keyboard.press('Tab');
-    await this._page.keyboard.type(email);
+    await this.emailInput.type(email);
     await this.privacyContinueButton.click();
   }
 }
