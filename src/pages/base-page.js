@@ -12,9 +12,13 @@ class BasePage {
     this._page = page;
   }
 
+  get page() {
+    return this._page;
+  }
+
   async visit(url) {
     await test.step(`Открываем url "${url}"`, async () => {
-      await this._page.goto(url, { waitUntil: 'networkidle' });
+      await this.page.goto(url, { waitUntil: 'networkidle' });
     });
   }
 }
