@@ -8,11 +8,15 @@ import { makeSelector } from '../utils/page-factory';
  */
 class BaseElement {
   constructor({ signature, qaId, selector, page, frameSelectors = [] }) {
-    this.page = page;
+    this._page = page;
     this._signature = signature;
     this._selector = selector;
     this._qaId = qaId;
     this._frameSelectors = frameSelectors;
+  }
+
+  get page() {
+    return this._page;
   }
 
   /**
