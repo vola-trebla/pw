@@ -26,7 +26,7 @@ class BaseElement {
    * @param frameSelectors
    * @param qaId
    * @param selector
-   * @returns {*}
+   * @returns {Locator}
    */
   getElement(frameSelectors = [], qaId, selector) {
     let locator = this.page.frameLocator(frameSelectors[0]);
@@ -40,6 +40,17 @@ class BaseElement {
       sel = selector || this._selector;
     }
     return locator.locator(sel);
+  }
+
+  /**
+   * Можно использовать, если необходим Handle элемента
+   * @param frameSelectors
+   * @param qaId
+   * @param selector
+   * @returns {Promise<ElementHandle<SVGElement | HTMLElement>>}
+   */
+  async getElementHandle(frameSelectors = [], qaId, selector) {
+    return await this.getElement(frameSelectors, qaId, selector).elementHandle();
   }
 
   get typeOf() {
