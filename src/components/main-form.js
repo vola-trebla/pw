@@ -9,6 +9,7 @@ class MainForm {
   constructor(page) {
     this._page = page;
     this._frameSelectors = [iframe.maneIframe];
+    // TODO :: Попробовал сделать билдер и заюзал в одном месте, показалось, что так более читаемо создаются элементы (поправлю для себя).
     this.elementBuilder = new ElementBuilder(page, { frameSelectors: this._frameSelectors });
   }
 
