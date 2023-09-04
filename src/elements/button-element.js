@@ -13,7 +13,7 @@ class ButtonElement extends BaseElement {
   }
 
   async hover() {
-    await test.step(`Ховер на ${this.typeOf} с именем "${this._signature}"`, async () => {
+    await test.step(`Ховер на ${this.typeOf} с именем "${this.elementSignature}"`, async () => {
       await this.element.hover();
     });
   }

@@ -1,5 +1,6 @@
 const { ButtonElement, BaseElement } = require('../elements/');
 const { iframe } = require('../constants/iframe-selectors');
+const { ElementBuilder } = require('../utils/element-builder');
 
 /**
  * Главная форма с одной кнопкой "Give me"
@@ -7,6 +8,8 @@ const { iframe } = require('../constants/iframe-selectors');
 class MainForm {
   constructor(page) {
     this._page = page;
+    this._frameSelectors = [iframe.maneIframe];
+    this.elementBuilder = new ElementBuilder(page, { frameSelectors: this._frameSelectors });
   }
 
   /**
@@ -26,9 +29,8 @@ class MainForm {
    * @returns {ButtonElement}
    */
   get giveMeButton() {
-    return new ButtonElement('Кнопка "Give me"', this._page, {
+    return this.elementBuilder.button('Кнопка "Give me"', {
       qaId: 'fun-element',
-      frameSelectors: [iframe.maneIframe],
     });
   }
 

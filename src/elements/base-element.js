@@ -18,6 +18,18 @@ class BaseElement {
     return this._page;
   }
 
+  get qaId() {
+    return this._qaId;
+  }
+
+  get selector() {
+    return this._selector;
+  }
+
+  get frameSelectors() {
+    return this._frameSelectors;
+  }
+
   /**
    * Получает iframe на любой вложенности
    *
@@ -46,10 +58,10 @@ class BaseElement {
   getElement(qaId, selector, frameSelectors = []) {
     let sel;
     const locator = frameSelectors.length > 0 ? this.getFrame(frameSelectors) : this.page;
-    if (qaId || this._qaId) {
-      sel = makeSelector(qaId || this._qaId);
+    if (this.qaId) {
+      sel = makeSelector(this.qaId);
     } else {
-      sel = selector || this._selector;
+      sel = this.selector;
     }
     return locator.locator(sel);
   }
@@ -59,7 +71,7 @@ class BaseElement {
    * @returns {Locator}
    */
   get element() {
-    return this.getElement(this._qaId, this._selector, this._frameSelectors);
+    return this.getElement(this.qaId, this.selector, this.frameSelectors);
   }
 
   /**
@@ -83,14 +95,14 @@ class BaseElement {
   }
 
   async click() {
-    await test.step(`Клик на ${this.typeOf} с именем "${this._signature}"`, async () => {
+    await test.step(`Клик на ${this.typeOf} с именем "${this.elementSignature}"`, async () => {
       await this.element.waitFor();
       await this.element.click();
     });
   }
 
   async doubleClick() {
-    await test.step(`Двойной клик на ${this.typeOf} с именем "${this._signature}"`, async () => {
+    await test.step(`Двойной клик на ${this.typeOf} с именем "${this.elementSignature}"`, async () => {
       await this.element.dblclick();
     });
   }
@@ -102,13 +114,13 @@ class BaseElement {
   }
 
   async shouldBeVisible() {
-    await test.step(`${this.typeOf} с именем "${this._signature}" должен быть виден`, async () => {
+    await test.step(`${this.typeOf} с именем "${this.elementSignature}" должен быть виден`, async () => {
       await expect(this.element).toBeVisible();
     });
   }
 
   async shouldContainText(text) {
-    await test.step(`${this.typeOf} с именем "${this._signature}" содержит текст`, async () => {
+    await test.step(`${this.typeOf} с именем "${this.elementSignature}" содержит текст`, async () => {
       await expect(this.element).toContainText(text);
     });
   }

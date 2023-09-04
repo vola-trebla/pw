@@ -9,12 +9,16 @@ class PersonalInfoForm {
     this._page = page;
   }
 
+  get page() {
+    return this._page;
+  }
+
   /**
    * Инпут ввода имени
    * @returns {InputElement}
    */
   get nameInput() {
-    return new InputElement('Инпут ввода имени', this._page, {
+    return new InputElement('Инпут ввода имени', this.page, {
       qaId: 'personal-first-name',
       frameSelectors: [iframe.donationWidget],
     });
@@ -25,7 +29,7 @@ class PersonalInfoForm {
    * @returns {InputElement}
    */
   get lastNameInput() {
-    return new InputElement('Инпут ввода фамилии', this._page, {
+    return new InputElement('Инпут ввода фамилии', this.page, {
       qaId: 'personal-last-name',
       frameSelectors: [iframe.donationWidget],
     });
@@ -36,7 +40,7 @@ class PersonalInfoForm {
    * @returns {InputElement}
    */
   get emailInput() {
-    return new InputElement('Инпут ввода email', this._page, {
+    return new InputElement('Инпут ввода email', this.page, {
       qaId: 'personal-email',
       frameSelectors: [iframe.donationWidget],
     });
@@ -47,7 +51,7 @@ class PersonalInfoForm {
    * @returns {ButtonElement}
    */
   get privacyContinueButton() {
-    return new ButtonElement('Кнопка подтверждения доната', this._page, {
+    return new ButtonElement('Кнопка подтверждения доната', this.page, {
       qaId: 'privacy-continue',
       frameSelectors: [iframe.donationWidget],
     });
