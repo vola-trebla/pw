@@ -9,12 +9,16 @@ class CardForm {
     this._page = page;
   }
 
+  get page() {
+    return this._page;
+  }
+
   /**
    * Инпут ввода номера карты
    * @returns {InputElement}
    */
   get cardNumberInput() {
-    return new InputElement('Инпут ввода номера карты', this._page, {
+    return new InputElement('Инпут ввода номера карты', this.page, {
       frameSelectors: [iframe.donationWidget, iframe.secureCard],
       selector: '[name="cardnumber"]',
     });
@@ -25,7 +29,7 @@ class CardForm {
    * @returns {InputElement}
    */
   get secureExpirationInput() {
-    return new InputElement('Инпут ввода срока окончания карты', this._page, {
+    return new InputElement('Инпут ввода срока окончания карты', this.page, {
       frameSelectors: [iframe.donationWidget, iframe.secureExpiration],
       selector: '[name="exp-date"]',
     });
@@ -36,7 +40,7 @@ class CardForm {
    * @returns {InputElement}
    */
   get secureCVCInput() {
-    return new InputElement('Инпут ввода CVC', this._page, {
+    return new InputElement('Инпут ввода CVC', this.page, {
       frameSelectors: [iframe.donationWidget, iframe.secureCVC],
       selector: '[name="cvc"]',
     });
@@ -47,7 +51,7 @@ class CardForm {
    * @returns {ButtonElement}
    */
   get continueButton() {
-    return new ButtonElement('Кнопка "Continue"', this._page, {
+    return new ButtonElement('Кнопка "Continue"', this.page, {
       qaId: 'card-continue',
       frameSelectors: [iframe.donationWidget],
     });
@@ -60,7 +64,7 @@ class CardForm {
   get errorMessage() {
     return new BaseElement({
       signature: 'Сообщение об ошибке',
-      page: this._page,
+      page: this.page,
       qaId: 'card-continue-error-title',
       frameSelectors: [iframe.donationWidget],
     });

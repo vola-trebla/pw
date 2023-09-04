@@ -2,6 +2,7 @@ const { ButtonElement, InputElement, CheckboxElement } = require('../elements');
 const { CardForm } = require('./card-form');
 const { PersonalInfoForm } = require('./personal-info-form');
 const { iframe } = require('../constants/iframe-selectors');
+const { ElementBuilder } = require('../utils/element-builder');
 
 /**
  * Форма доната
@@ -9,6 +10,12 @@ const { iframe } = require('../constants/iframe-selectors');
 class DonateForm {
   constructor(page) {
     this._page = page;
+    this._frameSelectors = [iframe.donationWidget];
+    this.elementBuilder = new ElementBuilder(page);
+  }
+
+  get page() {
+    return this._page;
   }
 
   /**
@@ -16,7 +23,7 @@ class DonateForm {
    * @returns {CardForm}
    */
   get cardForm() {
-    return new CardForm(this._page);
+    return new CardForm(this.page);
   }
 
   /**
@@ -24,7 +31,7 @@ class DonateForm {
    * @returns {PersonalInfoForm}
    */
   get personalInfoForm() {
-    return new PersonalInfoForm(this._page);
+    return new PersonalInfoForm(this.page);
   }
 
   /**
@@ -32,7 +39,7 @@ class DonateForm {
    * @returns {ButtonElement}
    */
   get donatButton() {
-    return new ButtonElement('Кнопка "Donate"', this._page, {
+    return new ButtonElement('Кнопка "Donate"', this.page, {
       qaId: 'donate-button',
       frameSelectors: [iframe.donationWidget],
     });
@@ -43,7 +50,7 @@ class DonateForm {
    * @returns {ButtonElement}
    */
   get monthlyButton() {
-    return new ButtonElement('Кнопка "Monthly"', this._page, {
+    return new ButtonElement('Кнопка "Monthly"', this.page, {
       qaId: 'more-frequent-button',
       frameSelectors: [iframe.donationWidget],
     });
@@ -54,7 +61,7 @@ class DonateForm {
    * @returns {InputElement}
    */
   get amountInput() {
-    return new InputElement('Инпут ввода кол-ва денег', this._page, {
+    return new InputElement('Инпут ввода кол-ва денег', this.page, {
       qaId: 'amount',
       frameSelectors: [iframe.donationWidget],
     });
@@ -65,7 +72,7 @@ class DonateForm {
    * @returns {ButtonElement}
    */
   get currencySelector() {
-    return new ButtonElement('Кнопка, раскрывающая доступные валюты на выбор', this._page, {
+    return new ButtonElement('Кнопка, раскрывающая доступные валюты на выбор', this.page, {
       qaId: 'currency-selector',
       frameSelectors: [iframe.donationWidget],
     });
@@ -76,7 +83,7 @@ class DonateForm {
    * @returns {CheckboxElement}
    */
   get coverFreeCheckbox() {
-    return new CheckboxElement('Чекбокс "Cover transaction costs"', this._page, {
+    return new CheckboxElement('Чекбокс "Cover transaction costs"', this.page, {
       qaId: 'cover-fee-checkbox',
       frameSelectors: [iframe.donationWidget],
     });
@@ -87,7 +94,7 @@ class DonateForm {
    * @returns {ButtonElement}
    */
   get creditCardButton() {
-    return new ButtonElement('Кнопка "Credit card"', this._page, {
+    return new ButtonElement('Кнопка "Credit card"', this.page, {
       qaId: 'cc-button',
       frameSelectors: [iframe.donationWidget],
     });
