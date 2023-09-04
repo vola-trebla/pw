@@ -56,13 +56,8 @@ class BaseElement {
    * @returns {Locator}
    */
   getElement(qaId, selector, frameSelectors = []) {
-    let sel;
     const locator = frameSelectors.length > 0 ? this.getFrame(frameSelectors) : this.page;
-    if (this.qaId) {
-      sel = makeSelector(this.qaId);
-    } else {
-      sel = this.selector;
-    }
+    const sel = this.qaId ? makeSelector(this.qaId) : this.selector;
     return locator.locator(sel);
   }
 
