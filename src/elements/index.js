@@ -1,9 +1,9 @@
-const { BaseElement } = require('./base-element');
-const { ButtonElement } = require('./button-element');
-const { CheckboxElement } = require('./checkbox-element');
-const { InputElement } = require('./input-element');
+import { BaseElement } from './base-element';
+import { ButtonElement } from './button-element';
+import { CheckboxElement } from './checkbox-element';
+import { InputElement } from './input-element';
 
-exports.BaseElement = BaseElement;
-exports.ButtonElement = ButtonElement;
-exports.CheckboxElement = CheckboxElement;
-exports.InputElement = InputElement;
+export { BaseElement as BaseElement };
+export { ButtonElement as ButtonElement };
+export { CheckboxElement as CheckboxElement };
+export { InputElement as InputElement };

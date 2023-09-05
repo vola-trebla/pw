@@ -1,6 +1,6 @@
-const { ButtonElement, InputElement, CheckboxElement } = require('../elements');
+import { ButtonElement, InputElement, CheckboxElement } from '../elements';
 
-class ElementBuilder {
+export class ElementBuilder {
   constructor(page, { frameSelectors = [] } = {}) {
     this._page = page;
     this._frameSelectors = frameSelectors;
@@ -30,5 +30,3 @@ class ElementBuilder {
     });
   }
 }
-
-exports.ElementBuilder = ElementBuilder;

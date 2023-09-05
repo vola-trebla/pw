@@ -1,10 +1,10 @@
-const { test } = require('@playwright/test');
-const { BaseElement } = require('./base-element');
+import { test } from '@playwright/test';
+import { BaseElement } from './base-element';
 
 /**
  * Элемент кнопки
  */
-class ButtonElement extends BaseElement {
+export class ButtonElement extends BaseElement {
   constructor(signature, page, { qaId, selector, frameSelectors = [] }) {
     super({ signature, page, qaId, selector, frameSelectors });
   }
@@ -18,5 +18,3 @@ class ButtonElement extends BaseElement {
     });
   }
 }
-
-exports.ButtonElement = ButtonElement;

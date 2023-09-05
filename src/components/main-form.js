@@ -1,11 +1,11 @@
-const { ButtonElement, BaseElement } = require('../elements/');
-const { iframe } = require('../constants/iframe-selectors');
-const { ElementBuilder } = require('../utils/element-builder');
+import { BaseElement } from '../elements/';
+import { iframe } from '../constants/iframe-selectors';
+import { ElementBuilder } from '../utils/element-builder';
 
 /**
  * Главная форма с одной кнопкой "Give me"
  */
-class MainForm {
+export class MainForm {
   constructor(page) {
     this._page = page;
     this._frameSelectors = [iframe.maneIframe];
@@ -43,5 +43,3 @@ class MainForm {
     await this.giveMeButton.click();
   }
 }
-
-exports.MainForm = MainForm;

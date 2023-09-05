@@ -1,10 +1,10 @@
-const { test, expect } = require('@playwright/test');
-const { BaseElement } = require('./base-element');
+import { test, expect } from '@playwright/test';
+import { BaseElement } from './base-element';
 
 /**
  * Элемент инпута
  */
-class InputElement extends BaseElement {
+export class InputElement extends BaseElement {
   constructor(signature, page, { qaId, selector, frameSelectors = [] }) {
     super({ signature, page, qaId, selector, frameSelectors });
   }
@@ -34,5 +34,3 @@ class InputElement extends BaseElement {
     });
   }
 }
-
-exports.InputElement = InputElement;
