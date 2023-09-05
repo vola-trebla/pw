@@ -5,7 +5,7 @@ import { makeSelector } from '../utils/page-factory';
 /**
  * Базовый класс для работы с элементами
  */
-class BaseElement {
+export class BaseElement {
   constructor({ signature, page, qaId, selector, frameSelectors = [] }) {
     this._page = page;
     this._signature = signature;
@@ -120,5 +120,3 @@ class BaseElement {
     });
   }
 }
-
-exports.BaseElement = BaseElement;

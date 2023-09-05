@@ -1,13 +1,13 @@
-const { ButtonElement, InputElement, CheckboxElement } = require('../elements');
-const { CardForm } = require('./card-form');
-const { PersonalInfoForm } = require('./personal-info-form');
-const { iframe } = require('../constants/iframe-selectors');
-const { ElementBuilder } = require('../utils/element-builder');
+import { ButtonElement, InputElement, CheckboxElement } from '../elements';
+import { CardForm } from './card-form';
+import { PersonalInfoForm } from './personal-info-form';
+import { iframe } from '../constants/iframe-selectors';
+import { ElementBuilder } from '../utils/element-builder';
 
 /**
  * Форма доната
  */
-class DonateForm {
+export class DonateForm {
   constructor(page) {
     this._page = page;
     this._frameSelectors = [iframe.donationWidget];
@@ -100,5 +100,3 @@ class DonateForm {
     });
   }
 }
-
-exports.DonateForm = DonateForm;

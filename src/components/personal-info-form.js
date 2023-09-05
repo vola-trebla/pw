@@ -1,10 +1,10 @@
-const { InputElement, ButtonElement } = require('../elements');
-const { iframe } = require('../constants/iframe-selectors');
+import { InputElement, ButtonElement } from '../elements';
+import { iframe } from '../constants/iframe-selectors';
 
 /**
  * Форма ввода имени, фамилии и email
  */
-class PersonalInfoForm {
+export class PersonalInfoForm {
   constructor(page) {
     this._page = page;
   }
@@ -71,5 +71,3 @@ class PersonalInfoForm {
     await this.privacyContinueButton.click();
   }
 }
-
-exports.PersonalInfoForm = PersonalInfoForm;

@@ -1,11 +1,11 @@
-const { test } = require('@playwright/test');
-const { MainForm } = require('../components/main-form');
-const { DonateForm } = require('../components/donate-form');
+import { test } from '@playwright/test';
+import { MainForm } from '../components/main-form';
+import { DonateForm } from '../components/donate-form';
 
 /**
  * Базовая страница, в ней содержатся все формы, а так же возможность перейти на эту страницу
  */
-class BasePage {
+export class BasePage {
   constructor(page) {
     this.mainForm = new MainForm(page);
     this.donateForm = new DonateForm(page);
@@ -22,5 +22,3 @@ class BasePage {
     });
   }
 }
-
-exports.BasePage = BasePage;

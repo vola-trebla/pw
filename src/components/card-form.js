@@ -1,10 +1,10 @@
-const { BaseElement, InputElement, ButtonElement } = require('../elements');
-const { iframe } = require('../constants/iframe-selectors');
+import { BaseElement, InputElement, ButtonElement } from '../elements';
+import { iframe } from '../constants/iframe-selectors';
 
 /**
  * Форма ввода данных карты
  */
-class CardForm {
+export class CardForm {
   constructor(page) {
     this._page = page;
   }
@@ -85,5 +85,3 @@ class CardForm {
     await this.continueButton.click();
   }
 }
-
-exports.CardForm = CardForm;

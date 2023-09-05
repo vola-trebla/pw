@@ -3,6 +3,4 @@
  * @param qaId - значение аттрибута data-qa
  * @returns {`[data-qa="${string}"]`}
  */
-const makeSelector = (qaId) => `[data-qa="${qaId}"]`;
-
-exports.makeSelector = makeSelector;
+export const makeSelector = (qaId) => `[data-qa="${qaId}"]`;
